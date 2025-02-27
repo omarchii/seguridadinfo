@@ -1,4 +1,4 @@
-from Crypto.Cipher import PKCS1_OAEP
+from Crypto.Cipher import PKCS1_OAEP #pip install pycryptdome
 from Crypto.PublicKey import RSA
 import hashlib
 
@@ -9,14 +9,14 @@ def cargar_clave_publica(nombre):
 
 # Cargar clave privada
 def cargar_clave_privada(nombre):
-    with open(f"keys/privada{nombre}.pem", "rb") as file:
+    with open(f"keys/privada_{nombre}.pem", "rb") as file:
         return RSA.import_key(file.read())
 
 # Generar hash SHA-256 del mensaje
 def generar_hash(mensaje):
     return hashlib.sha256(mensaje.encode()).hexdigest()
 
-# Dividir el mensaje en bloques adecuados (máx. 86 caracteres por seguridad)
+# Dividir el mensaje en bloques adecuados 
 def dividir_mensaje(mensaje, tamano_bloque=86):  
     return [mensaje[i:i + tamano_bloque] for i in range(0, len(mensaje), tamano_bloque)]
 
@@ -32,10 +32,10 @@ def descifrar_mensaje(bloques_cifrados, clave_privada):
 
 # Implementación principal
 def main():
-    print("🔐 Cifrando y Descifrando Mensaje...")
+    print("Cifrando y Descifrando Mensaje...")
 
     # Mensaje de 1050 caracteres
-    mensaje = "A" * 1050
+    mensaje = "M" * 1050
 
     # Cargar claves
     clave_publica = cargar_clave_publica("bob")
@@ -57,7 +57,7 @@ def main():
     hash_descifrado = generar_hash(mensaje_descifrado)
 
     # Verificar autenticidad del mensaje
-    print("✅ ¿El mensaje es auténtico?", hash_original == hash_descifrado)
+    print("¿El mensaje es auténtico?", hash_original == hash_descifrado)
 
 # Ejecutar si es el script principal
 if __name__ == "__main__":
