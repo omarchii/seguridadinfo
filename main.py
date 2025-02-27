@@ -9,7 +9,7 @@ def main():
     verificacion.main()  # La AC verifica la firma de Alice
 
     print("\n La AC firma el documento y se lo envía a Bob...")
-    firmaRSA.firmar_con_ac("NDA_firmado.pdf")  # 🔹 Corrección aquí
+    firmaRSA.firmar_con_ac("NDA_firmado.pdf")  # orrección aquí
 
     print("\n Bob verifica la firma de la AC...")
     clave_publica_ac = verificacion.cargar_clave_publica("ac")

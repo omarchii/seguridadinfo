@@ -11,7 +11,7 @@ def cargar_clave_privada(nombre):
 def generar_hash_pdf(nombre_pdf):
     with open(nombre_pdf, "rb") as file:
         datos_pdf = file.read()
-    return SHA256.new(datos_pdf)  # 🔹 Generamos el hash antes de modificar el PDF
+    return SHA256.new(datos_pdf)  # Generamos el hash antes de modificar el PDF
 
 def firmar_documento(nombre_pdf, clave_privada, firmante="Alice", nuevo_pdf=None):
     """
